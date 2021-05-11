@@ -31,8 +31,8 @@ img{
 }
 
 
-.col-3{
-
+.card{
+    margin-top: 1%;
       background-color:rgba(0, 214, 203, 0.15);
       border:0;   
       position: relative;
@@ -47,7 +47,7 @@ img{
   
 
 }
-.col-3:hover {
+.card:hover {
     
     z-index: 2;
     -webkit-transition: all 200ms ease-in;

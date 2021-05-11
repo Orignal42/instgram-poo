@@ -14,9 +14,9 @@ class Likersmanager {
     {
    
       $q = $this->db->prepare('SELECT * FROM likers WHERE counter = :counter');
-      
+      $q->bindValue(':id_user', $likers->getId_user());
+      $q->bindValue(':id_photo', $likers->getId_photo());
       $q->bindValue(':count', $likers->getCounter());
-      
 
       
       $q->execute();
@@ -26,4 +26,9 @@ class Likersmanager {
         'id' => $likersArray['id']
       ]);
     }
+
+
+
+
+    
 }

@@ -7,4 +7,4 @@ $likedPhotos->execute([
 ]);
 
 $AllPhotoLiked = $likedPhotos->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($AllPhotoLiked);
+var_dump($AllPhotoLiked);

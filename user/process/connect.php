@@ -3,15 +3,17 @@
 include '../../management/autoload.php';
 
 require_once("../../management/pdo.php");
-$user= new Usersmanager($pdo);
+$userManager= new Usersmanager($pdo);
 
 if (isset($_POST['user'])){
-    $_SESSION['user']=$_POST['user'];
-    
+
+ 
     $newuser = new Users(['user'=>$_POST['user']]);
+
+    $userManager->connect($newuser);
+// La on transforme le newuser en tableau pour ressortir les infos plus tard
+    $_SESSION['user']= $newuser;
     header('Location: /Instageek/bibliotheque.php');
-    $user->connect($newuser);
-    
 }
 ?>
 

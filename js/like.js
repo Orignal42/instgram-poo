@@ -13,7 +13,7 @@ likeBtns.forEach(likeBtn => {
        likeFormData.append('idphoto', e.target.getAttribute('data-idphoto'))
      
        likeFormData.append('iduser', userId)
-          fetch('/user/process/insertlike.php',{
+          fetch('/Instageek/user/process/insertlike.php',{
            method: 'post',
            body: likeFormData
        })

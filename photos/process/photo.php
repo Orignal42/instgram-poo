@@ -1,19 +1,16 @@
 <?php
-include '..//../partials/header.php';
-
 include '..//../management/autoload.php';
-
+include '..//../partials/header.php';
 require_once("..//../management/pdo.php");
-
-
-$photo= new Photosmanager($pdo);
-$user= new Usersmanager($pdo);
+var_dump( $_SESSION['user']);
+$photoManager= new Photosmanager($pdo);
+$userManager= new Usersmanager($pdo);
 if (isset($_POST['comments'])){
-    
-   
-    $newphoto = new Photos(['photo'=>$_FILES["photo"]["name"],'id_user'=>$_SESSION['id'], 'comments'=>$_POST['comments']]);
-     $user= new Users(['id'=>$_SESSION['id']]);
-    $photo-> addPhoto($newphoto,$user);
+    $idphoto=$_SESSION['user']->getId();
+   echo $idphoto;
+    $newphoto = new Photos(['photo'=>$_FILES["photo"]["name"],'id_user'=>$idphoto, 'comments'=>$_POST['comments']]);
+    $user= new Users(['id'=>$idphoto]);
+    $photoManager-> addPhoto($newphoto,$user);
 
 
 // Vérifier si le formulaire a été soumis

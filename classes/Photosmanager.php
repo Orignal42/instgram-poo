@@ -20,23 +20,46 @@ class Photosmanager {
       $q->bindValue(':comments', $photo->getComments());
       $q->execute();
     }
-    public function getListPhotos(Photos $photo)
+    public function getListPhotos()
     {
-   
-      $q = $this->db->prepare('SELECT * FROM photos ');
-      
- 
-      $q->bindValue(':photo', $photo->getPhoto());
-      $q->bindValue(':comments', $photo->getComments());
-      $q->bindValue(':id_user', $photo->getId_user());
-      
+      $listPhoto = [];
+      $q = $this->db->prepare('SELECT * FROM photos');
+           
       $q->execute();
-      $photoArray = $q->fetch(PDO::FETCH_ASSOC);
-      
-      $photo->hydrate([
-        'id' => $photoArray['id']
-      ]);
+      $photoArray = $q->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($photoArray as $photo) {
+        array_push( $listPhoto, new Photos($photo));
+      }
+      return $listPhoto;
     }
 
+
+    
+    public function getListPhotosByUsers()
+    {
+      $listPhotos = [];
+      $q = $this->db->prepare('SELECT * FROM photos  WHERE id_user=id');
+           
+      $q->execute();
+      $photosArray = $q->fetchAll(PDO::FETCH_ASSOC);
+      foreach ($photosArray as $photo) {
+        array_push( $listPhotos, new Photos($photo));
+      }
+      return $listPhotos;
+    }
+
+
+    public function getPhotosbyUsers(Photos $photos)
+    {
+  
+      $q = $this->db->prepare('SELECT * FROM users WHERE id=?');
+        
+      
+      $q->execute([$photos->getId_user()]);
+      $photoid = $q->fetch(PDO::FETCH_ASSOC);
+      $test = new Users($photoid);
+  
+      return $test;
+    }
   
 }

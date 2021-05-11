@@ -37,7 +37,10 @@ class Usersmanager {
       $userArray = $q->fetch(PDO::FETCH_ASSOC);
       
       $user->hydrate([
-        'id' => $userArray['id']
+        'id' => $userArray['id'],
+        'created_at' => $userArray['created_at'],
+        'avatar' => $userArray['avatar'],
+        'description' => $userArray['description']
       ]);
     }
 
