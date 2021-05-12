@@ -12,8 +12,9 @@ if (empty($_SESSION)) {
     header('Location: /Instageek/index.php?message=veuillez vous inscrire ou vous connecter');
 }
 
-
-echo $_POST['iduser'];
+$_SESSION['iduser']=$_POST['iduser'];
+$_SESSION['idphoto']=$_POST['idphoto'];
+echo $_SESSION['idphoto'];echo $_SESSION['iduser'];
 ?>
 
 

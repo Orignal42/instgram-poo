@@ -13,11 +13,45 @@ likeBtns.forEach(likeBtn => {
        likeFormData.append('idphoto', e.target.getAttribute('data-idphoto'))
      
        likeFormData.append('iduser', userId)
-          fetch('/user/process/insertlike.php',{
+          fetch('/Instageek/user/process/insertlike.php',{
            method: 'post',
            body: likeFormData
        })
 
     })
 });
+
+// let likeBtns = document.querySelectorAll('.launcher-like')
+// let userId = document.querySelector('[data-idUser]').getAttribute('data-idUser')
+
+// likeBtns.forEach(likeBtn => {
+//     likeBtn.addEventListener('click',function(e){
+
+//        let likeFormData = new FormData
+//        likeFormData.append('id_photo', e.target.getAttribute('data-idphoto'))
+//        likeFormData.append('id_user', userId)
+
+
+//        fetch('/Users/process/like.php',{
+//            method: 'post',
+//            body: likeFormData
+//        }).then(()=>{
+//            refreshLike(e.target.getAttribute('data-idphoto'))
+//        })
+//     })
+// });
+
+// function refreshLike(idPhoto){
+//     formData = new FormData()
+//     formData.append('id',idPhoto)
+//     fetch('/Users/process/getLikedPhoto.php',{
+//         method:'post',
+//         body:formData
+//     }).then((response)=>{
+//         return response.json()
+//     }).then((data)=>{
+//         console.log(data);
+//         document.querySelector('.nb_like').innerHTML = data.nb_like
+//     })
+// }
 

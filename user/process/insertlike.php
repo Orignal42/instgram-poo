@@ -16,8 +16,7 @@
 
 // $likerManager->addLikers($newphoto,$newuser);
 
-
-echo $_POST['iduser'];
+var_dump( $_POST['idphoto']); var_dump($_POST['iduser']);
 
 
  if (isset($_POST['idphoto']) && isset($_POST['iduser'])) {
@@ -33,13 +32,13 @@ echo $_POST['iduser'];
 
      if ($is_like) {
       echo "like SUPPRIMER";
-      header('Location: /Instageek/index.php');
+      
         
         $deleteLikeStatement = $pdo->prepare('DELETE FROM likers WHERE id_photo = ? AND id_user = ? ');
         $deleteLikeStatement->execute([
             $_POST['idphoto'],
             $_POST['iduser'],
-            header('Location: /Instageek/index.php')
+   
         ]);
      }else{
 
@@ -49,7 +48,7 @@ echo $_POST['iduser'];
             $_POST['iduser']
         ]);
         echo "like Ajouté";
-        header('Location: /Instageek/index.php');
+
      }
 
 }
