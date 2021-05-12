@@ -34,13 +34,13 @@ class Photosmanager {
     }
 
 
-    
-    public function getListPhotosByUsers()
+    //Pour croiser les tables
+    public function getListPhotosByUsers(Users $user)
     {
       $listPhotos = [];
-      $q = $this->db->prepare('SELECT * FROM photos  WHERE id_user=id');
+      $q = $this->db->prepare('SELECT * FROM photos  WHERE id_user=?');
            
-      $q->execute();
+      $q->execute([$user->getId()]);
       $photosArray = $q->fetchAll(PDO::FETCH_ASSOC);
       foreach ($photosArray as $photo) {
         array_push( $listPhotos, new Photos($photo));
@@ -49,17 +49,8 @@ class Photosmanager {
     }
 
 
-    public function getPhotosbyUsers(Photos $photos)
-    {
+
+ 
   
-      $q = $this->db->prepare('SELECT * FROM users WHERE id=?');
-        
-      
-      $q->execute([$photos->getId_user()]);
-      $photoid = $q->fetch(PDO::FETCH_ASSOC);
-      $test = new Users($photoid);
-  
-      return $test;
-    }
-  
+ 
 }

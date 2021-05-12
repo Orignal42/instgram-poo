@@ -2,12 +2,14 @@
 include '..//../management/autoload.php';
 include '..//../partials/header.php';
 require_once("..//../management/pdo.php");
-var_dump( $_SESSION['user']);
 $photoManager= new Photosmanager($pdo);
 $userManager= new Usersmanager($pdo);
+
+
+
 if (isset($_POST['comments'])){
     $idphoto=$_SESSION['user']->getId();
-   echo $idphoto;
+
     $newphoto = new Photos(['photo'=>$_FILES["photo"]["name"],'id_user'=>$idphoto, 'comments'=>$_POST['comments']]);
     $user= new Users(['id'=>$idphoto]);
     $photoManager-> addPhoto($newphoto,$user);

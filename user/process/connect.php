@@ -6,14 +6,14 @@ require_once("../../management/pdo.php");
 $userManager= new Usersmanager($pdo);
 
 if (isset($_POST['user'])){
-
+   
  
     $newuser = new Users(['user'=>$_POST['user']]);
 
     $userManager->connect($newuser);
 // La on transforme le newuser en tableau pour ressortir les infos plus tard
     $_SESSION['user']= $newuser;
-    header('Location: /Instageek/bibliotheque.php');
+    header("Location: /Instageek/bibliotheque.php?message=Bienvenue"." ". $_POST['user']);
 }
 ?>
 

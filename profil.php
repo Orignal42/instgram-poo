@@ -2,18 +2,19 @@
 require_once(__DIR__ . "/management/autoload.php");
 include './partials/header.php';
 require_once(__DIR__ . "/management/pdo.php");
-
+$idphoto=$_SESSION['user']->getId();
 
 if ($_SESSION['user']) {
     $userManager = new UsersManager($pdo);
     $allusers = $userManager->getList();
     $test = new PhotosManager($pdo);
     $arrayPhotos = $test->getListPhotosByUsers($_SESSION['user']);
-    foreach ($arrayPhotos as $photo){ 
-      $photographie=$test->getPhotosbyUsers($photo);
-        var_dump($photographie);
-        }
+
+
+ 
+
 }
+
 
 ?>
 <div class="container justify-content-center">
@@ -30,8 +31,12 @@ if ($_SESSION['user']) {
                 <h1><?=$_SESSION['user']->getDescription();?></h1>
 
 
-                <?php foreach ($photographie  as $rowPhotos){?>       
-                <img src="/Instageek/photos/images/<?= $rowPhotos->getPhotosByUsers(); ?>"width='30%' height='auto'>
+                <?php 
+                 foreach ($arrayPhotos as $rowPhotos){
+               
+                   ?> 
+
+                <img src="/Instageek/photos/images/<?php echo $rowPhotos->getPhoto(); ?>"width='30%' height='auto'>
                 <?php }?>        
             </div>
     </div>

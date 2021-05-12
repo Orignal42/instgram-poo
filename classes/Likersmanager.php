@@ -9,26 +9,27 @@ class Likersmanager {
     {
       $this->db = $db;
     }
-  
-    public function counter(Likers $likers)
+
+    public function addLikers(Photos $photo, Users $user )
     {
    
-      $q = $this->db->prepare('SELECT * FROM likers WHERE counter = :counter');
-      $q->bindValue(':id_user', $likers->getId_user());
-      $q->bindValue(':id_photo', $likers->getId_photo());
-      $q->bindValue(':count', $likers->getCounter());
+      $q = $this->db->prepare('INSERT INTO likers( id_user, id_photo) VALUES( :id_user,:id_photo)');
+      
+      $q->bindValue(':id_photo', $photo->getId());
+      $q->bindValue(':id_user', $user->getId());
+      $q->execute();
+    }
+  
 
       
-      $q->execute();
-      $likersArray = $q->fetch(PDO::FETCH_ASSOC);
-      
-      $likers->hydrate([
-        'id' => $likersArray['id']
-      ]);
+
+    
     }
 
 
 
 
+
+
     
-}
+

@@ -13,7 +13,7 @@
 
 <?php if(isset($_GET["message"])) : ?>
    <div style="padding:10px;background:green;color:#fff;">
-   <?=    $_GET["message"]?>
+   <?php if(isset($_GET["message"])) { echo $_GET["message"];} ?>
    </div>          
      <?php endif ;?>    
 
